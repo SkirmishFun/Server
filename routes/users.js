@@ -11,4 +11,16 @@ router.get('/', function(req, res, next) {
     })
 });
 
+router.post('/login', passport.authenticate('local'), (req, res) => {
+  console.log(req.user);
+  eventsDb.getAllEvents()
+    .then(events => {
+      res.json({user: req.user, events})
+    })
+    .catch(err => {
+      res.status(400)
+      res.send(err)
+    })
+})
+
 module.exports = router;
