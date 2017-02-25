@@ -12,7 +12,8 @@ const corsOptions = {
 }
 const passport = require('./passport')
 
-var users = require('./routes/users');
+const users = require('./routes/users')
+const archetypes = require('./routes/archetypes')
 
 var app = express();
 
@@ -25,5 +26,6 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use('/api/v1/users', users)
+app.use('/api/v1/archetypes', archetypes)
 
 module.exports = app;
